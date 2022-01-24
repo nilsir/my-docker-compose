@@ -1,0 +1,19 @@
+version: '3'
+services:
+  postgres:
+    container_name: "postgres"
+    image: "postgres"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-nilsir}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-nilsir}
+      POSTGRES_DB: ${POSTGRES_DB:-nilsir}
+    volumes:
+      - ./data:/var/lib/postgresql/data/
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    restart: unless-stopped
+    networks:
+      - postgres-net
+networks:
+    postgres-net:
+        external: true

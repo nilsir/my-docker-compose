@@ -1,0 +1,19 @@
+version: '3.1'
+
+services:
+    meilisearch:
+        image: getmeili/meilisearch:latest
+        container_name: "meilisearch"
+        environment:
+            MEILI_MASTER_KEY: ${MEILI_MASTER_KEY:-nilsir}
+        volumes:
+            - ./data:/data/db:rw
+        ports:
+            - "${MEILISEARCH_PORT:-7700}:7700"
+        restart: always
+        networks:
+            - meilisearch-net
+
+networks:
+    meilisearch-net:
+        external: true
