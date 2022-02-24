@@ -1,0 +1,17 @@
+version: '3.0'
+services:
+  redis:
+    image: redis:alpine
+    container_name: redis
+    ports:
+      - "${REDIS_PORT}:6379"
+    volumes:
+      - ./data:/data:rw
+      - ./conf/redis.conf:/usr/local/etc/redis/redis.conf:rw
+    restart: always
+    command: redis-server /usr/local/etc/redis/redis.conf  --requirepass "${REDIS_PASSWD}"
+    networks:
+      - redis-net
+networks:
+  redis-net:
+    external: true
