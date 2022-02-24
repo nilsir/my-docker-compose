@@ -5,12 +5,12 @@ services:
         image: mongo:latest
         container_name: "mongodb"
         environment:
-            MONGO_INITDB_ROOT_USERNAME: nilsir
-            MONGO_INITDB_ROOT_PASSWORD: 123456
+            MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME:-nilsir}
+            MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD:-123456}
         volumes:
             - ./data:/data/db:rw
         ports:
-            - "${MONGODB_PORT}:27017"
+            - "${MONGODB_PORT:-27017}:27017"
         restart: always
         networks:
             - mongodb-net
