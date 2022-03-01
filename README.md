@@ -1,4 +1,4 @@
-[English](./README.md) | 中文
+English | [中文](./README-CN.md)
 ## Instructions
 1. Create a new data directory under each directory
 
