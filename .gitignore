@@ -3,3 +3,4 @@ data
 .idea
 .env
 nginx/log
+log

@@ -1,0 +1,23 @@
+version: "3.1"
+
+services:
+    neo4j:
+        container_name: "neo4j"
+        image: neo4j:latest
+        ports:
+            - "${NEO4J_HTTP_PORT:-7474}:7474"
+            - "${NEO4J_BOLT_PORT:-7687}:7687"
+        volumes:
+            - ./log:/logs/:rw
+            - ./data:/data/:rw
+            - ./conf:/var/lib/neo4j/conf/:rw
+        environment:
+            TZ: Asia/Shanghai
+            NEO4J_AUTH: none
+        restart: always
+        networks:
+            - neo4j-net
+
+networks:
+    neo4j-net:
+        external: true
