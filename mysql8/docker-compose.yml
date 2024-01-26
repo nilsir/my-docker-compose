@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+    mysql:
+        container_name: "mysql8"
+        image: mysql:8.0.36
+        ports:
+            - "${MYSQL_PORT:-3306}:3306"
+        volumes:
+            - ./log:/logs/:rw
+            - ./data:/var/lib/mysql/:rw
+            - ./conf:/etc/mysql/conf.d/:rw
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-123456}
+            MYSQL_DATABASE: ${MYSQL_DATABASE:-nilsir}
+        command: --authentication-policy=mysql_native_password
+        restart: always
+        networks:
+            - mysql8-net
+
+networks:
+    mysql8-net:
+        external: true
