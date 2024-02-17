@@ -2,7 +2,7 @@ version: "3.1"
 services:
   elasticsearch:
     container_name: elasticsearch
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.1.1
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.12.1
     environment:
       - cluster.name=nilsir-es
       - bootstrap.memory_lock=true
@@ -18,7 +18,7 @@ services:
       - ./data:/usr/share/elasticsearch/data
   kibana:
     container_name: kibana
-    image: docker.elastic.co/kibana/kibana:8.1.1
+    image: docker.elastic.co/kibana/kibana:8.12.1
     environment:
       - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
     networks:
