@@ -10,14 +10,14 @@ English | [中文](./README-CN.md)
 
 ## Included services
 
-- [x] nginx
-- [x] mysql
-- [x] redis
-- [x] consul
-- [x] elasticsearch
-- [x] mailhog
-- [x] meilisearch
-- [x] mongodb
-- [x] neo4j
-- [x] postgres
-- [x] rabbitmq
+- [x] [nginx](./nginx/)
+- [x] [mysql](./mysql8/)
+- [x] [redis](./redis/)
+- [x] [consul](./consul/)
+- [x] [elasticsearch](./elasticsearch/)
+- [x] [mailhog](./mailhog/)
+- [x] [meilisearch](./meilisearch/)
+- [x] [mongodb](./mongodb/)
+- [x] [neo4j](./neo4j/)
+- [x] [postgres](./postgres/)
+- [x] [rabbitmq](./rabbitmq/)
