@@ -5,7 +5,7 @@ services:
     image: hashicorp/consul:latest
     container_name: consul-server1
     ports:
-      - ${UI_PORT:-8500}:8500
+      - ${SERVER1_UI_PORT:-8501}:8500
       - 8601:8600/udp
       - 8301:8300
     command: "agent -server -bootstrap-expect=3 -node=server1 -client=0.0.0.0 -ui -retry-join=consul-server2 -retry-join=consul-server3"
@@ -19,7 +19,7 @@ services:
     image: hashicorp/consul:latest
     container_name: consul-server2
     ports:
-      - 8502:8500
+      - ${SERVER2_UI_PORT:-8502}:8500
       - 8602:8600/udp
       - 8302:8300
     command: "agent -server -bootstrap-expect=3 -node=server2 -client=0.0.0.0 -ui -retry-join=consul-server1 -retry-join=consul-server3"
@@ -33,7 +33,7 @@ services:
     image: hashicorp/consul:latest
     container_name: consul-server3
     ports:
-      - 8503:8500
+      - ${SERVER3_UI_PORT:-8503}:8500
       - 8603:8600/udp
       - 8303:8300
     command: "agent -server -bootstrap-expect=3 -node=server3 -client=0.0.0.0 -ui -retry-join=consul-server1 -retry-join=consul-server2"
