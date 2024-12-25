@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+    etcd:
+        image: "bitnami/etcd:3.5"
+        container_name: "etcd"
+        ports:
+            - ${PORT:-2379}:2379
+        environment:
+            - TZ=${TZ:-Asia/Shanghai}
+            - ALLOW_NONE_AUTHENTICATION=${ALLOW_NONE_AUTHENTICATION:-yes}
+            - ETCD_ADVERTISE_CLIENT_URLS=http://etcd:2379
+        restart: always
+        networks:
+            - etcd-net
+
+networks:
+    etcd-net:
+        external: true
