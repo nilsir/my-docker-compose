@@ -1,4 +1,3 @@
-version: '3.1'
 services:
   rabbitmq:
     restart: always
@@ -13,7 +12,8 @@ services:
       RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD:-nilsir}
     volumes:
       - ./data:/var/lib/rabbitmq
-      # - ./conf:/etc/rabbitmq
+      - ./plugins/rabbitmq_delayed_message_exchange-4.0.2.ez:/plugins/rabbitmq_delayed_message_exchange-4.0.2.ez
+    entrypoint: ["/bin/sh", "-c", "rabbitmq-plugins enable --offline rabbitmq_delayed_message_exchange && rabbitmq-server"]
     networks:
       - rabbitmq-net
 networks:
