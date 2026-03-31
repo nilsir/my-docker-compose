@@ -1,0 +1,33 @@
+groups:
+  - name: vivaia-store-http
+    interval: 1m
+    rules:
+      - alert: HighErrorRate
+        expr: |
+          (
+            rate(http_requests_total{status_code=~"5.."}[5m])
+            /
+            rate(http_requests_total[5m])
+          ) > 0.05
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "{{ $labels.service }} 错误率超过 5%"
+          description: >
+            服务 {{ $labels.service }}（路由 {{ $labels.route }}）
+            的 5xx 比例为 {{ $value | humanizePercentage }}，持续超过 2 分钟。
+
+      - alert: HighP99Latency
+        expr: |
+          histogram_quantile(0.99,
+            rate(http_request_duration_seconds_bucket[5m])
+          ) > 2
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "{{ $labels.service }} P99 延迟超过 2s"
+          description: >
+            服务 {{ $labels.service }}（路由 {{ $labels.route }}）
+            的 P99 延迟为 {{ $value | humanizeDuration }}，持续超过 2 分钟。

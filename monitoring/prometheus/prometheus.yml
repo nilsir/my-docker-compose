@@ -1,0 +1,29 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+            - alertmanager:9093
+
+rule_files:
+  - "rules/*.yml"
+
+scrape_configs:
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  - job_name: "vivaia-api"
+    static_configs:
+      - targets: ["host.docker.internal:8100"]
+
+  - job_name: "vivaia-admin"
+    static_configs:
+      - targets: ["host.docker.internal:8200"]
+
+  - job_name: "vivaia-integration"
+    static_configs:
+      - targets: ["host.docker.internal:8300"]
