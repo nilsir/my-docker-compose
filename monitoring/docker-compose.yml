@@ -49,6 +49,15 @@ services:
     networks:
       - monitoring-net
 
+  wework-adapter:
+    build: ./wework-adapter
+    container_name: wework-adapter
+    environment:
+      - WX_WEBHOOK_KEY=${WX_WEBHOOK_KEY}
+    restart: always
+    networks:
+      - monitoring-net
+
 networks:
   monitoring-net:
     external: true

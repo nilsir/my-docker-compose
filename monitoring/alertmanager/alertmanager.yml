@@ -2,23 +2,14 @@ global:
   resolve_timeout: 5m
 
 route:
-  receiver: null-receiver
+  receiver: wxwork-alert
   group_by: ['alertname', 'service']
   group_wait: 30s
   group_interval: 5m
   repeat_interval: 4h
-  routes:
-    # 待 alertmanager-webhook-adapter 部署后，将下方路由取消注释并填入实际 key
-    # - receiver: wxwork-alert
-    #   continue: false
 
 receivers:
-  # 暂时静默所有告警，待 webhook adapter 部署后切换为 wxwork-alert
-  - name: null-receiver
-
   - name: wxwork-alert
     webhook_configs:
-      # 待 alertmanager-webhook-adapter 部署后取消注释，将 YOUR_WXWORK_ROBOT_KEY 替换为实际 key
-      # 参考：https://github.com/timonwong/prometheus-webhook-dingtalk（支持企业微信）
-      # - url: 'http://alertmanager-webhook-adapter:8080/weixin?token=YOUR_WXWORK_ROBOT_KEY'
-      #   send_resolved: true
+      - url: 'http://wework-adapter:5000/webhook'
+        send_resolved: true
