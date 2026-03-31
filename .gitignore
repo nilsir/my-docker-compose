@@ -4,3 +4,6 @@ data
 .env
 nginx/log
 log
+.claude/settings.local.json
+.claude/plans
+.claude/memory

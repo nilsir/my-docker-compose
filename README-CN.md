@@ -21,3 +21,4 @@
 - [x] [neo4j](./neo4j/)
 - [x] [postgres](./postgres/)
 - [x] [rabbitmq](./rabbitmq/)
+- [x] [jaeger](./jaeger/)
