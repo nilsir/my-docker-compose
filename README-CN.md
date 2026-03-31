@@ -22,3 +22,4 @@
 - [x] [postgres](./postgres/)
 - [x] [rabbitmq](./rabbitmq/)
 - [x] [jaeger](./jaeger/)
+- [x] [monitoring](./monitoring/) (prometheus + grafana + alertmanager)
