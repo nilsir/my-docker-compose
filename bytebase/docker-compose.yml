@@ -1,0 +1,15 @@
+services:
+  bytebase:
+    image: bytebase/bytebase:${BYTEBASE_VERSION:-latest}
+    container_name: bytebase
+    restart: unless-stopped
+    ports:
+      - "${BYTEBASE_PORT:-8080}:8080"
+    volumes:
+      - ./data:/var/opt/bytebase
+    networks:
+      - bytebase-net
+
+networks:
+  bytebase-net:
+    external: true
